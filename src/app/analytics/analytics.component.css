@@ -1,0 +1,101 @@
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card h5 {
+  font-weight: bold;
+}
+
+.card p {
+  font-size: 1.5rem;
+}
+
+.card small {
+  font-size: 0.9rem;
+}
+
+.stat-card {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  text-align: center;
+  flex: 1;
+  margin: 0 10px;
+  color: #6c757d;
+}
+
+.stat-card-1 {
+  background-color: rgba(243, 129, 129, 0.2);
+  border-color: rgba(243, 129, 129, 0.9);
+}
+
+.stat-card-2 {
+  background-color: rgba(252, 227, 138, 0.2);
+  border-color: rgba(252, 227, 138, 0.9);
+}
+
+.stat-card-3 {
+  background-color: rgba(179, 226, 167, 0.2);
+  border-color: rgba(179, 226, 167, 0.9);
+}
+
+.stat-card-4 {
+  background-color: rgba(149, 225, 211, 0.2);
+  border-color: rgba(149, 225, 211, 0.9);
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #000;
+}
+
+.product-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.table th,
+.table td {
+  border: none;
+  padding: 15px;
+}
+    
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+.rating i {
+  font-size: 14px;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.shadow-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.input-group .form-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

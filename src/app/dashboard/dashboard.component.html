@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row banner">
+    <div class="col-md-6 d-flex flex-column justify-content-center">
+      <h1>Hello Martin!</h1>
+      <p>Welcome to your overview of your account.</p>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <img src="assets/pro.jpg" class="rounded float-start" alt="profile" />
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row my-3 mb-3 head-tile">
+    <div class="col-md-8 products">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="display-6">My products</h1>
+        <div class="input-group me-2" style="max-width: 200px">
+          <button
+            class="btn btn-transparent text-secondary"
+            type="button"
+            routerLink="/products"
+          >
+            View all products >
+          </button>
+        </div>
+      </div>
+
+      <div class="cards mt-3">
+        <div class="card" *ngIf="!products">
+          <div class="card-details">
+            <p class="text-title">Loading...</p>
+            <p class="text-body">Please wait while we fetch your products.</p>
+          </div>
+        </div>
+        <div
+          class="card"
+          *ngFor="let product of products.slice(0, 4); let i = index"
+        >
+          <img
+            [src]="product.imageUrl"
+            alt="Product Image"
+            class="card-img-top"
+          />
+          <div class="card-details mt-2">
+            <p class="text-title">{{ product.name }}</p>
+            <p class="text-body">Price: {{ product.price }}</p>
+          </div>
+          <button class="card-button" (click)="goToProductDetail(product.id)">
+            More <i class="bi bi-arrow-right-circle"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 calendar">
+      <div class="calendar-content">
+     
+      </div>
+    </div>
+  </div>
+
+  <hr />
+</div>

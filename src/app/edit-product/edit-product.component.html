@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <div class="row">
+    <h3>Edit product {{ addProductForm.get("name")?.value }}</h3>
+  </div>
+  <div class="row">
+    <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          formControlName="name"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          class="form-control"
+          formControlName="description"
+          required
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input
+          type="number"
+          id="price"
+          class="form-control"
+          formControlName="price"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="stock" class="form-label">Stock</label>
+        <input
+          type="number"
+          id="stock"
+          class="form-control"
+          formControlName="stock"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="imageUrl" class="form-label"
+          >Image (PNG, JPG, JPEG only)</label
+        >
+        <input
+          type="file"
+          id="imageUrl"
+          (change)="onFileSelected($event)"
+          accept=".png, .jpg, .jpeg"
+          class="form-control"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="tagId" class="form-label">Tag ID</label>
+        <input
+          type="text"
+          id="tagId"
+          class="form-control"
+          formControlName="tagId"
+        />
+      </div>
+      <div class="buttonGroup">
+        <button type="submit" class="btn btn-primary">Update Product</button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

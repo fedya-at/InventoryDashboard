@@ -1,0 +1,7 @@
+.outer-outlet-container {
+  height: 100vh;
+}
+.sidebar-open {
+  display: block;
+  z-index: 1000;
+}

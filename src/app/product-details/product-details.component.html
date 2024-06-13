@@ -1,0 +1,92 @@
+<!-- src/app/product-detail/product-detail.component.html -->
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col">
+      <h1>Product Details</h1>
+      <p class="lead">Explore more about {{ product.name }}</p>
+    </div>
+    <div class="col-auto text-end">
+      <button class="btn btn-dark" (click)="goBack()">
+        <i class="bi bi-arrow-left"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="product">
+    <div class="col-md-6">
+      <img
+        [src]="product.imageUrl"
+        class="img-fluid rounded"
+        alt="Product Image"
+      />
+    </div>
+    <div class="col-md-6">
+      <h2>{{ product.name }}</h2>
+      <h4 class="text-muted">{{ product.description }}</h4>
+      <div class="mb-3">
+        <span class="text-warning">
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star"></i>
+        </span>
+        <span class="text-secondary">(8 Reviews)</span>
+      </div>
+      <h3 class="text-danger">{{ product.price | currency }}</h3>
+      <div class="d-flex align-items-center my-4">
+        <label for="quantity" class="me-2">Quantity: {{ product.stock }}</label>
+      </div>
+      <div class="accordion mb-4" id="productDetails">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingDescription">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseDescription"
+              aria-expanded="true"
+              aria-controls="collapseDescription"
+            >
+              Description
+            </button>
+          </h2>
+          <div
+            id="collapseDescription"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingDescription"
+            data-bs-parent="#productDetails"
+          >
+            <div class="accordion-body">
+              <p>{{ product.description }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingDetails">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseDetails"
+              aria-expanded="false"
+              aria-controls="collapseDetails"
+            >
+              Details
+            </button>
+          </h2>
+          <div
+            id="collapseDetails"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingDetails"
+            data-bs-parent="#productDetails"
+          >
+            <div class="accordion-body">
+              <p>Tag ID: {{ product.tagId }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,309 @@
+<div class="container-fluid">
+  <div class="row my-3 shadow-sm head-tile">
+    <div class="col-md-6 col-sm-12">
+      <h1 class="display-6">Product Management</h1>
+    </div>
+    <div
+      class="col-md-6 col-sm-12 d-flex justify-content-end align-items-center"
+    >
+      <div class="input-group me-2" style="max-width: 200px">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search..."
+          #searchInput
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="onSearch(searchInput.value)"
+        >
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+      <button
+        type="button"
+        class="btn btn-dark"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        + New Product
+      </button>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title">Product Statistics</h5>
+          </div>
+          <div class="d-flex justify-content-between flex-wrap mt-3">
+            <div class="stat-card shadow-sm p-3 mb-3 rounded stat-card-1">
+              <h6>Product Stock</h6>
+              <p class="stat-number">
+                4,189 <span class="text-success">↑ 2%</span>
+              </p>
+            </div>
+            <div class="stat-card shadow-sm p-3 mb-3 rounded stat-card-2">
+              <h6>Sales Volume</h6>
+              <p class="stat-number">
+                8,918 <span class="text-danger">↓ 22%</span>
+              </p>
+            </div>
+            <div class="stat-card shadow-sm p-3 mb-3 rounded stat-card-3">
+              <h6>Customer Satisfaction</h6>
+              <p class="stat-number">
+                4.8 <span class="text-muted">(417 Reviews)</span>
+              </p>
+            </div>
+            <div class="stat-card shadow-sm p-3 mb-3 rounded stat-card-4">
+              <h6>Revenue Growth</h6>
+              <p class="stat-number">
+                89% <span class="text-success">↑ 2%</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-3" style="border-radius: 10px">
+    <div class="col-lg-8 col-12 mb-3 mb-lg-0">
+      <div class="card shadow-sm">
+        <div
+          class="card-header d-flex justify-content-between align-items-center bg-white"
+        >
+          <h5 class="card-title">List of products</h5>
+          <div class="d-flex justify-content-between">
+            <label class="dropdown me-2">
+              <div class="dd-button">Filter</div>
+
+              <input type="checkbox" class="dd-input" id="test" />
+
+              <ul class="dd-menu">
+                <li (click)="sortProducts('name')">
+                  <i class="bi bi-tag"></i> Name
+                </li>
+                <li (click)="sortProducts('price')">
+                  <i class="bi bi-currency-exchange"></i> Price
+                </li>
+                <li (click)="sortProducts('stock')">
+                  <i class="bi bi-shop-window"></i> Stock
+                </li>
+              </ul>
+            </label>
+            <button class="btn btn-dark" (click)="downloadCSV()">
+              Download
+            </button>
+          </div>
+        </div>
+        <div class="card-body bg-white">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Pricing</th>
+                <th>Stock</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of getCurrentPageProducts()">
+                <td>
+                  <div class="d-flex align-items-center">
+                    <input
+                      type="checkbox"
+                      [checked]="selectedProduct?.id === product.id"
+                      (change)="onProductSelect($event, product)"
+                      class="me-3"
+                    />
+                    <img
+                      [src]="product.imageUrl"
+                      alt="{{ product.name }}"
+                      class="product-image me-3"
+                    />
+                    {{ product.name }}
+                  </div>
+                </td>
+                <td>{{ product.price | currency }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                  <button
+                    class="btn btn-sm btn-outline-secondary me-2"
+                    (click)="editProduct(product.id)"
+                  >
+                    <i class="bi bi-pencil"></i> Edit
+                  </button>
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    (click)="deleteProduct(product.id)"
+                  >
+                    <i class="bi bi-trash"></i> Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item" [ngClass]="{ disabled: currentPage === 1 }">
+                <a class="page-link" (click)="onPageChange(currentPage - 1)"
+                  >Previous</a
+                >
+              </li>
+              <li
+                class="page-item"
+                *ngFor="let page of getPages()"
+                [ngClass]="{ active: page === currentPage }"
+              >
+                <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+              </li>
+              <li
+                class="page-item"
+                [ngClass]="{ disabled: currentPage === getTotalPages() }"
+              >
+                <a class="page-link" (click)="onPageChange(currentPage + 1)"
+                  >Next</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white">
+          <h5 class="card-title">Product Details</h5>
+        </div>
+        <div class="card-body bg-white">
+          <div *ngIf="selectedProduct">
+            <h6>{{ selectedProduct.name }}</h6>
+            <img
+              [src]="selectedProduct.imageUrl"
+              alt="{{ selectedProduct.name }}"
+              class="img-fluid mb-3"
+            />
+            <p>
+              <strong>Price:</strong> {{ selectedProduct.price | currency }}
+            </p>
+            <p><strong>Stock:</strong> {{ selectedProduct.stock }}</p>
+            <p>
+              <strong>Description:</strong> {{ selectedProduct.description }}
+            </p>
+          </div>
+          <div *ngIf="!selectedProduct">
+            <img
+              src="../../assets/product.png"
+              alt="Placeholder"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Add a new Product
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Product Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              id="description"
+              class="form-control"
+              formControlName="description"
+              required
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input
+              type="number"
+              id="price"
+              class="form-control"
+              formControlName="price"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input
+              type="number"
+              id="stock"
+              class="form-control"
+              formControlName="stock"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="imageUrl" class="form-label"
+              >Image (PNG, JPG, JPEG only)</label
+            >
+            <input
+              type="file"
+              id="imageUrl"
+              (change)="onFileSelected($event)"
+              accept=".png, .jpg, .jpeg"
+              class="form-control"
+              formControlName="imageUrl"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="tagId" class="form-label">Tag ID</label>
+            <input
+              type="text"
+              id="tagId"
+              class="form-control"
+              formControlName="tagId"
+            />
+          </div>
+          <div class="buttonGroup">
+            <button type="submit" class="btn btn-primary">Add Product</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

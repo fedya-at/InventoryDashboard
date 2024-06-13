@@ -1,0 +1,228 @@
+.display-6 {
+  font-size: 1.5rem;
+}
+.head-tile {
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: none;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #000;
+}
+
+.product-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.table th,
+.table td {
+  border: none;
+  padding: 15px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+.btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.shadow-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.input-group .form-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.stat-card {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  text-align: center;
+  flex: 1;
+  margin: 0 10px;
+  color: #6c757d;
+}
+
+.stat-card-1 {
+  background-color: rgba(243, 129, 129, 0.2);
+  border-color: rgba(243, 129, 129, 0.9);
+}
+
+.stat-card-2 {
+  background-color: rgba(252, 227, 138, 0.2);
+  border-color: rgba(252, 227, 138, 0.9);
+}
+
+.stat-card-3 {
+  background-color: rgba(179, 226, 167, 0.2);
+  border-color: rgba(179, 226, 167, 0.9);
+}
+
+.stat-card-4 {
+  background-color: rgba(149, 225, 211, 0.2);
+  border-color: rgba(149, 225, 211, 0.9);
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #000;
+}
+
+/* Add media queries for responsive design */
+@media (max-width: 768px) {
+  .input-group {
+    width: 100%;
+  }
+  .input-group .form-control {
+    border-radius: 5px;
+  }
+  .input-group .btn {
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  .buttonGroup {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .head-tile {
+    text-align: center;
+  }
+  .head-tile h1 {
+    font-size: 1.2rem;
+  }
+  .card-body {
+    padding: 10px;
+  }
+  .stat-card {
+    margin: 5px 0;
+  }
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+  
+}
+
+.dd-button {
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 10px 30px 10px 20px;
+  background-color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dd-button:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;
+}
+
+.dd-button:hover {
+  background-color: #eeeeee;
+}
+
+.dd-input {
+  display: none;
+}
+
+.dd-menu {
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0;
+  margin: 2px 0 0 0;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  list-style-type: none;
+}
+
+.dd-input + .dd-menu {
+  display: none;
+}
+
+.dd-input:checked + .dd-menu {
+  display: block;
+}
+
+.dd-menu li {
+  padding: 10px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dd-menu li:hover {
+  background-color: #f6f6f6;
+}
+
+.dd-menu li a {
+  display: block;
+  margin: -10px -20px;
+  padding: 10px 20px;
+}
+
+.dd-menu li.divider {
+  padding: 0;
+  border-bottom: 1px solid #cccccc;
+}
