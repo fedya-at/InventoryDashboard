@@ -1,7 +1,81 @@
-.outer-outlet-container {
+/* app.component.css */
+
+/* Ensure the sidebar is fixed and takes the full height of the viewport */
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100vh;
-}
-.sidebar-open {
-  display: block;
+  background-color: transparent;
+  overflow-y: auto;
   z-index: 1000;
+}
+
+.show-sidebar {
+  display: block !important;
+}
+
+.burger-menu {
+  display: none;
+  background-color: #f3f5e5;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 1001;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 767.98px) {
+  .sidebar-container {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    display: none;
+  }
+  .outer-outlet-container {
+    margin-left: 0;
+  }
+  .burger-menu {
+    display: block;
+    display: flex;
+    justify-content: flex-start;
+    z-index: 1001;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .outer-outlet-container {
+    margin-left: 25%; /* 3/12 of the total width (col-md-3) */
+  }
+}
+
+@media (min-width: 992px) {
+  .outer-outlet-container {
+    margin-left: 16.6667%; /* 2/12 of the total width (col-lg-2) */
+  }
+}
+
+/* Sidebar link styles */
+.nav-link {
+  font-size: 1rem;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.nav-link i {
+  margin-right: 10px;
+}
+.nav-link:hover {
+  background-color: #013d5a;
+  color: #f3f3f3;
+}
+.bottom-nav {
+  margin-top: 300px;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
 }

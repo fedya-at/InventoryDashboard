@@ -20,6 +20,7 @@ export class EditProductComponent implements OnInit {
     private router: Router,
     private productService: ProductService
   ) {
+    // Initialize the form group here
     this.addProductForm = this.fb.group({
       id: [''],
       name: ['', Validators.required],
@@ -59,7 +60,6 @@ export class EditProductComponent implements OnInit {
         this.productService.uploadProductImage(this.selectedFile).subscribe(
           (response) => {
             productData.imageUrl = response.imageUrl;
-
             this.updateProduct(productData);
           },
           (error) => {

@@ -62,7 +62,7 @@
   border: none;
   padding: 15px;
 }
-    
+
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #f9f9f9;
 }
@@ -83,7 +83,7 @@
 }
 
 .bg-light {
-  background-color: #f8f9fa !important;
+  background-color: #f3f5e5 !important;
 }
 
 .shadow-sm {

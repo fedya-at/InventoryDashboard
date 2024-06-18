@@ -14,10 +14,11 @@ import { CommunService, toastPayload } from '../services/commun.service';
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
   currentPage = 1;
-  pageSize = 3;
+  pageSize = 5;
   totalItems = 0;
   addProductForm: FormGroup;
   selectedProduct: Product | null = null;
+  selectedProductToDelete: Product | null = null; // Add this line
   toast!: toastPayload;
   selectedFile: File | null = null;
   sortCriteria: string = '';
@@ -156,7 +157,6 @@ export class ProductsComponent implements OnInit {
           this.productService.createProduct(productData).subscribe(
             () => {
               console.log('Product added successfully');
-              // Optionally, navigate to another route or show a success message
             },
             (error) => {
               console.error('Error adding product', error);

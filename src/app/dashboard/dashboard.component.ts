@@ -1,17 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  model,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { CommunService, toastPayload } from '../services/commun.service';
 import { IndividualConfig } from 'ngx-toastr';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
   products: Product[] | null = null; // Initialize with null or empty array
+  selected = model<Date | null>(null);
 
   toast!: toastPayload;
 
